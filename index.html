@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="publisher" href="https://plus.google.com/106292100743979527533"/>
+<link rel="author" href="https://plus.google.com/108911234048292569811"/>
+<link rel="stylesheet" href="http://atmpl.ru/assets/css/bootstrap.min.css" />
+<style>
+h1 {
+    font-family:'Tahoma';
+    color:#c4cad4;
+    font-size:34px;
+    padding-top:34px;
+    padding-right:13px;
+    padding-bottom:34px;
+    padding-left:13px;
+    border:1px solid #ccc;
+    border-radius:3px;
+    z-index:9999999999
+}
+
+@media (min-width:768px){
+
+h1 {
+    font-size:55px;
+}
+</style>
+<title>Генератор text-shadow Bootstrap - aTmpl</title>
+<base href="http://atmpl.ru" />
+<script type="text/javascript" src="http://atmpl.ru/assets/js/jquery-1.10.2.js"></script>
+</head>
+<body>
+<div class="container">
+<div class="row">
+<div class="col-md-12"><!-- osnovnoi -->
+
+<fieldset>
+
+<h1 class="three-d text-center">Генератор text-shadow Bootstrap</h1>
+<div class="clearfix"></div>
+<label>
+<input type="radio" name="mode" value="1"> Тип тени Радуга
+</label>
+&nbsp;&nbsp;
+<label>
+<input type="radio" name="mode" value="2" checked> Тип тени Слой
+</label>
+&nbsp;&nbsp;
+<label>
+<input type="radio" name="mode" value="3"> Сброс всех теней
+</label>
+<div class="clearfix"></div>
+<hr>
+<div class="col-md-6 option-text-shadow">
+
+<div class="form-group">
+<div class="input-group input-group-sm col-sm-12">
+<span class="input-group-addon">Начальный цвет тени</span>
+<input type="text" class="form-control shadow-end-color cp-basic" value="3569ba" placeholder="3569ba">
+<div class="swatch shadow-start-color-swatch"></div>
+</div>
+</div>
+
+<div class="form-group">
+<div class="input-group input-group-sm col-sm-12">
+<span class="input-group-addon"> Конечный цвет тени</span>
+<input type="text" class="form-control shadow-end-color cp-basic" value="134888" placeholder="134888">
+<div class="swatch shadow-end-color-swatch"></div>
+</div>
+</div>
+
+<div class="form-group">
+<div class="input-group input-group-sm col-sm-12">
+<span class="input-group-addon">Цвет текста</span>
+<input type="text" class="form-control text-color cp-basic" value="c4cad4" placeholder="c4cad4">
+<div class="swatch text-color-swatch"></div>
+</div>
+</div>
+
+<div class="form-group">
+<div class="input-group input-group-sm col-sm-12">
+<span class="input-group-addon">Цвет фона</span>
+<input type="text" class="form-control background-color cp-basic" value="ffffff" placeholder="ffffff">
+<div class="swatch background-color-swatch"></div>
+</div>
+</div>
+
+<div class="form-group">
+<div class="input-group input-group-sm col-sm-12">
+<label class="input-group-addon">Глубина тени</label>
+<div id="depth" class="form-control"></div>
+</div>
+</div>
+
+<div class="form-group">
+<div class="input-group input-group-sm col-sm-12">
+<label class="input-group-addon">Смещение X</label>
+<div id="xDirection" class="form-control"></div>
+</div>
+</div>
+
+<div class="form-group">
+<div class="input-group input-group-sm col-sm-12">
+<label class="input-group-addon">Смещение Y</label>
+<div id="yDirection" class="form-control"></div>
+</div>
+</div>
+
+<div class="form-group">
+<div class="input-group input-group-sm col-sm-12">
+<label class="input-group-addon">Размытость</label>
+<div id="blur" class="form-control"></div>
+</div>
+</div>
+
+</div>
+    	
+<div class="col-md-6 text-shadow-code">
+    		
+<pre>
+<code class="shadow-css language-css">
+</code>
+</pre>
+</div>
+<style>
+@import url("http://atmpl.ru/test/text-shadow/jquery-ui-git.css");
+@import url("http://atmpl.ru/test/text-shadow/jquery.colorpicker.css");
+</style>
+<script src="http://atmpl.ru/test/text-shadow/jquery-ui.min.js"></script>
+<script src="http://atmpl.ru/test/text-shadow/jquery.colorpicker.js"></script>
+<script src="http://atmpl.ru/test/text-shadow/jquery.xcolor.min.js"></script>
+<script src="http://atmpl.ru/test/text-shadow/prism.js"></script>
+</fieldset>    	
+<div class="clearfix"></div>
+<hr>
+<script type="text/javascript">
+var shadow = '';
+var depth = 34;
+var blur = 0;
+var xDirection = 1;
+var yDirection = 1;
+var textColor = '#c4cad4';
+var startColor = '#3fa53e';
+var endColor = '#134888';
+var mode = 1;
+
+function shadeColor1(color, percent) {
+var num = parseInt(color.slice(1),16), amt = Math.round(2.55 * percent), R = (num >> 16) + amt, G = (num >> 8 & 0x00FF) + amt, B = (num & 0x0000FF) + amt;
+return "#" + (0x1000000 + (R<255?R<1?0:R:255)*0x10000 + (G<255?G<1?0:G:255)*0x100 + (B<255?B<1?0:B:255)).toString(16).slice(1);
+}		
+function textShadow1(depth, startColor, endColor, xDirection, yDirection, blur) {
+for(i = 1; i < depth + 1; i++){
+var _xshadow = xDirection * i * .005;
+var _yshadow = yDirection * i * .005;
+var xFinal = _xshadow.toFixed(3);
+var yFinal = _yshadow.toFixed(3);
+
+if((depth + 1 - i) > 1) {
+shadow = shadow + xFinal + 'em ' + yFinal + 'em ' + (blur * .001) + 'em ' + $.xcolor.gradientlevel(startColor, endColor, i-1, depth) + ', ';
+} else {
+shadow = shadow + xFinal + 'em ' + yFinal + 'em ' + (blur * .001) + 'em ' + $.xcolor.gradientlevel(startColor, endColor, i-1, depth);
+}
+}
+return shadow;
+			}
+
+function textShadow2(depth, startColor, endColor, xDirection, yDirection, blur) {
+for(i = 1; i < depth + 1; i++){
+var _xshadow = xDirection * i * .001;
+var _yshadow = yDirection * i * .001;
+var xFinal = _xshadow.toFixed(3);
+var yFinal = _yshadow.toFixed(3);
+
+if((depth + 1 - i) > 1) {
+if (i % 2 == 0){
+shadow = shadow + xFinal + 'em ' + (yFinal - .001).toFixed(3) + 'em ' + (blur * .001) + 'em ' + startColor + ', ';
+}
+
+if (i % 2 == 1){
+shadow = shadow + (xFinal - .001).toFixed(3) + 'em ' + yFinal + 'em ' + (blur * .001) + 'em ' + endColor + ', ';
+						}
+						
+} else {
+shadow = shadow + xFinal + 'em ' + (yFinal - .001).toFixed(3) + 'em ' + (blur * .001) + 'em ' + startColor;
+}
+}
+return shadow;
+			}
+
+function renderShadow() {
+$('.three-d').css({
+'textShadow' : shadow
+});
+
+$('.shadow-css').text('text-shadow: ' + shadow + ';');
+}
+
+function initializeShadow(mode) {
+if (mode == 1) {
+textShadow1(depth, startColor, endColor, xDirection, yDirection, blur);
+
+}
+
+if (mode == 2) {
+textShadow2(depth, startColor, endColor, xDirection, yDirection, blur);
+} 
+				
+renderShadow();
+Prism.highlightAll();
+}
+
+$('input[name=mode]').change(function() {
+var newMode = $(this).val();
+mode = newMode;
+shadow = '';
+initializeShadow(mode);
+			});
+
+$('.cp-basic').colorpicker();
+
+$('#depth').slider({
+min: 0,
+max: 89,
+value: 21,
+slide: function(event, ui){
+shadow = '';
+depth = ui.value;
+initializeShadow(mode);
+}
+});
+
+$('#blur').slider({
+min: 0,
+max: 200,
+slide: function(event, ui){
+shadow = '';
+blur = ui.value;
+initializeShadow(mode);
+}
+});
+$('#colorTransitionIncrementor').slider({
+min: -21,
+max: 21,
+step: .5,
+slide: function(event, ui){
+shadow = '';
+colorTransitionIncrementor = ui.value;
+initializeShadow(mode);
+}
+});
+
+$('#xDirection').slider({
+min: -13,
+max: 13,
+slide: function(event, ui){
+shadow = '';
+xDirection = ui.value;
+initializeShadow(mode);
+}
+});
+
+$('#yDirection').slider({
+min: -8,
+max: 8,
+slide: function(event, ui){
+shadow = '';
+yDirection = ui.value;
+initializeShadow(mode);
+}
+			});
+
+$('.shadow-start-color').blur(function(){
+console.log('fired');
+shadow = '';
+startColor = '#' + $(this).val();
+initializeShadow(mode);
+$('.shadow-start-color-swatch').css('background', '#' + $(this).val());
+});
+
+$('.shadow-end-color').blur(function(){
+shadow = '';
+endColor = '#' + $(this).val();
+initializeShadow(mode);
+$('.shadow-end-color-swatch').css('background', '#' + $(this).val());
+});
+
+$('.text-color').blur(function(){
+textColor = '#' + $(this).val();
+$('.three-d').css('color', textColor);
+$('.text-color-swatch').css('background', '#' + $(this).val());
+});
+
+$('.background-color').blur(function(){
+$('.three-d').css('background', '#' + $(this).val());
+$('.background-color-swatch').css('background', '#' + $(this).val());
+});
+
+initializeShadow(mode);
+
+$(document).ready(function(){
+$("input[value='3']").change(function(){
+$('h1, h1+p').textshadow('none');
+});
+});
+</script>
+</div> <!-- osnovnoi -->
+</div> <!-- /row -->
+</div> <!-- /container -->
+</body>
+</html>
